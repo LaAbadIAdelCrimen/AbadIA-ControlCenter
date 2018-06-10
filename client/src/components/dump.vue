@@ -1,3 +1,9 @@
+<template>
+  <div>
+    <p>{{ msg }}</p>
+  </div>
+</template>
+
 <script>
 import axios from 'axios'
 
