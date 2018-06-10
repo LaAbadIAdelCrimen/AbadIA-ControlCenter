@@ -1,3 +1,5 @@
+from typing import List, Any
+
 from flask import Flask, jsonify
 from flask_cors import CORS
 import os
@@ -17,7 +19,7 @@ CORS(app)
 # AbadIA
 
 loadedGame    = {}
-loadedActions = []
+loadedActions = {}
 
 # sanity check route
 @app.route('/ping', methods=['GET'])
@@ -27,13 +29,13 @@ def ping_pong():
 @app.route('/game', methods=['GET'])
 def game():
     # filename = os.path.join("/tmp", "game.json"),
-    actions = []
+    loadedActions = {}
     with open("/tmp/game.json") as gameFile:
             for cnt, line in enumerate(gameFile):
                 # print("Line {}: {}".format(cnt, line))
-                actions.append(json.loads(line)[0])
-    loadedActions = actions
-    loadedGame.update({'filename': '/tmp/game.json', 'actions': len(actions)})
+                loadedActions.update({str(cnt): json.loads(line)[0]})
+    # loadedActions = actions
+    loadedGame.update({'filename': '/tmp/game.json', 'actions': len(loadedActions)})
 
     # abadia_actions_180608_235540_290496.json
     return jsonify({
@@ -43,19 +45,21 @@ def game():
 
 @app.route('/action/<index>', methods=['GET'])
 def action(index):
+
     print("index ({})".format(index))
     print("game ({})".format(loadedGame))
     print("actions ({})".format(loadedActions))
     # print("action {}".format(loadedActions[int(index)]))
-    if len(loadedActions) > int(index):
-        action = loadedActions[int(index)]
+    if int(index) > len(loadedActions):
+        action = {}
     else:
-        action = []
+        action = loadedActions[index]
 
     return jsonify({
         'status': 'success',
         'game': game,
         'action': action
+
     })
 
 
