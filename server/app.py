@@ -41,6 +41,12 @@ def game():
         'game': loadedGame
     })
 
+@app.route('/action/<index>', methods=['GET'])
+def action(index):
+    return jsonify({
+        'status': 'success',
+        'action': loadedActions[int(index)]
+    })
 
 
 
