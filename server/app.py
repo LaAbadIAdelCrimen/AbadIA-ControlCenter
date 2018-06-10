@@ -29,7 +29,11 @@ def ping_pong():
 @app.route('/game', methods=['GET'])
 def game():
     # filename = os.path.join("/tmp", "game.json"),
+    global loadedActions
+    global loadedGame
+
     loadedActions = {}
+
     with open("/tmp/game.json") as gameFile:
             for cnt, line in enumerate(gameFile):
                 # print("Line {}: {}".format(cnt, line))
@@ -45,20 +49,22 @@ def game():
 
 @app.route('/action/<index>', methods=['GET'])
 def action(index):
+    global loadedActions
+    global loadedGame
 
     print("index ({})".format(index))
     print("game ({})".format(loadedGame))
     print("actions ({})".format(loadedActions))
     # print("action {}".format(loadedActions[int(index)]))
     if int(index) > len(loadedActions):
-        action = {}
+        step = {}
     else:
-        action = loadedActions[index]
+        step = loadedActions[index]
 
     return jsonify({
         'status': 'success',
-        'game': game,
-        'action': action
+        'game': loadedGame,
+        'action': step
 
     })
 
