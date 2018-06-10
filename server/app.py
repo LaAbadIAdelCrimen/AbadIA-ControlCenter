@@ -33,7 +33,7 @@ def game():
                 # print("Line {}: {}".format(cnt, line))
                 actions.append(json.loads(line)[0])
     loadedActions = actions
-    loadGame.update('filename': '/tmp/game.json', 'actions': len(actions))
+    loadedGame.update({'filename': '/tmp/game.json', 'actions': len(actions)})
 
     # abadia_actions_180608_235540_290496.json
     return jsonify({
