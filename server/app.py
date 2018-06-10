@@ -43,9 +43,19 @@ def game():
 
 @app.route('/action/<index>', methods=['GET'])
 def action(index):
+    print("index ({})".format(index))
+    print("game ({})".format(loadedGame))
+    print("actions ({})".format(loadedActions))
+    # print("action {}".format(loadedActions[int(index)]))
+    if len(loadedActions) > int(index):
+        action = loadedActions[int(index)]
+    else:
+        action = []
+
     return jsonify({
         'status': 'success',
-        'action': loadedActions[int(index)]
+        'game': game,
+        'action': action
     })
 
 
