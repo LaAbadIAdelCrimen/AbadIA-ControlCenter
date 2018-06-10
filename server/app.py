@@ -6,6 +6,7 @@ import json
 # configuration
 DEBUG = True
 
+
 # instantiate the app
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -13,6 +14,10 @@ app.config.from_object(__name__)
 # enable CORS
 CORS(app)
 
+# AbadIA
+
+loadedGame    = {}
+loadedActions = []
 
 # sanity check route
 @app.route('/ping', methods=['GET'])
@@ -26,11 +31,14 @@ def game():
     with open("/tmp/game.json") as gameFile:
             for cnt, line in enumerate(gameFile):
                 # print("Line {}: {}".format(cnt, line))
-                actions.append(json.load(line))
+                actions.append(json.loads(line)[0])
+    loadedActions = actions
+    loadGame.update('filename': '/tmp/game.json', 'actions': len(actions))
+
     # abadia_actions_180608_235540_290496.json
     return jsonify({
         'status': 'success',
-        'game': actions
+        'game': loadedGame
     })
 
 
