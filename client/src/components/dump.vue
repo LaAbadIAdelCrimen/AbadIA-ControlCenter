@@ -6,11 +6,11 @@
 
 <script>
 export default {
-  name: 'Ping',
-  data() {
+  name: 'Dump',
+  data () {
     return {
-      msg: 'Hello!',
-    };
-  },
-};
+      msg: 'Dump Info from Game Engine'
+    }
+  }
+}
 </script>
