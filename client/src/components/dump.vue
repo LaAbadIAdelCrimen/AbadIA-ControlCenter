@@ -1,15 +1,15 @@
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   name: 'Dump',
-  data() {
+  data () {
     return {
       msg: ''
     }
   },
   methods: {
-    getMessage() {
+    getMessage () {
       const path = 'http://localhost:5000/ping'
       axios.get(path)
         .then((res) => {
@@ -18,11 +18,11 @@ export default {
         .catch((error) => {
           // eslint-disable-next-line
           console.error(error)
-        });
-    },
+        })
+    }
   },
-  created() {
-    this.getMessage();
+  created () {
+    this.getMessage()
   }
-};
+}
 </script>
