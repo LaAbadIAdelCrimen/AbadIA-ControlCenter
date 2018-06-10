@@ -22,12 +22,15 @@ def ping_pong():
 @app.route('/game', methods=['GET'])
 def game():
     # filename = os.path.join("/tmp", "game.json"),
-    with open("/tmp/game.json") as gamefile:
-        data = json.load(gamefile)
+    actions = []
+    with open("/tmp/game.json") as gameFile:
+            for cnt, line in enumerate(gameFile):
+                # print("Line {}: {}".format(cnt, line))
+                actions.append(json.load(line))
     # abadia_actions_180608_235540_290496.json
     return jsonify({
         'status': 'success',
-        'game': data
+        'game': actions
     })
 
 
