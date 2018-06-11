@@ -64,12 +64,12 @@ def action(index):
     if int(index)+1 == len(loadedActions):
         next = index
     else:
-        next = str(int(index+1))
+        next = str(int(index)+1)
 
     if int(index)-1 < 0:
         prev = '0'
     else:
-        prev = str(int(index-1))
+        prev = str(int(index)-1)
 
 
     return jsonify({
