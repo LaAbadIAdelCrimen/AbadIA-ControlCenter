@@ -2,7 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-primary">{{ msg }}</button>
+        <button type="button" class="btn btn-primary">{{ this.msg }}</button>
+        {{ this.action.action }}
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-primary">Next State</button>
         {{ this.action.action }}
       </div>
     </div>
@@ -25,6 +29,7 @@ export default {
       axios.get(path)
         .then((res) => {
           this.msg = res.data.game.filename
+          this.getAction('0')
         })
         .catch((error) => {
           // eslint-disable-next-line
@@ -32,9 +37,10 @@ export default {
         })
     },
     getAction (index) {
-      const path = 'http://localhost:5000/action/'+index
+      const path = 'http://localhost:5000/action/' + index
       axios.get(path)
         .then((res) => {
+          this.msg = 'Action Ready'
           this.action = res.data.action
         })
         .catch((error) => {
@@ -46,7 +52,6 @@ export default {
   },
   created () {
     this.getGame()
-    this.getAction('0')
   }
 }
 </script>

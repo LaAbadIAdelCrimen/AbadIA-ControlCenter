@@ -56,8 +56,8 @@ def action(index):
     print("game ({})".format(loadedGame))
     print("actions ({})".format(loadedActions))
     # print("action {}".format(loadedActions[int(index)]))
-    if int(index) > len(loadedActions):
-        step = {}
+    if int(index) > len(loadedActions) or len(loadedActions) == 0:
+        step = {'action': {}}
     else:
         step = loadedActions[index]
 
