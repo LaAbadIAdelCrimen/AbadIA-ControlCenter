@@ -61,10 +61,23 @@ def action(index):
     else:
         step = loadedActions[index]
 
+    if int(index)+1 == len(loadedActions):
+        next = index
+    else:
+        next = str(int(index+1))
+
+    if int(index)-1 < 0:
+        prev = '0'
+    else:
+        prev = str(int(index-1))
+
+
     return jsonify({
         'status': 'success',
         'game': loadedGame,
-        'action': step
+        'next': next,
+        'previous': prev,
+        'action': step['action']
 
     })
 
