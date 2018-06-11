@@ -27,10 +27,10 @@
     </div>
      <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-primary"> Prev {{ this.prev }} </button>
+        <button type="button" class="btn btn-primary"  @click="getAction(prev)" > Prev {{ this.prev }} </button>
       </div>
        <div class="col">
-        <button type="button" class="btn btn-primary"> Next {{ this.next }} </button>
+        <button type="button" class="btn btn-primary"  @click="getAction(next)" > Next {{ this.next }} </button>
       </div>
     </div>
   </div>
@@ -81,7 +81,6 @@ export default {
           console.error(error)
         })
     }
-
   },
   created () {
     this.getGame()
