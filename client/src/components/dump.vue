@@ -8,7 +8,12 @@
     <div class="row">
       <div class="col">
         <button type="button" class="btn btn-primary">State</button> <br/>
+        Día: {{ this.state.dia }} Hora: {{ this.state.momentoDia }} Pantalla: {{ this.state.numPantalla }}<br/>
+        Obsequium: {{ this.state.obsequium }} Bonus: {{ this.state.bonus }} Porcentaje: {{ this.state.procentaje }} <br/>
         {{ this.action.action }} <br/>
+        {{ this.action.action }} <br/>
+        {{ this.action.action }} <br/>
+
       </div>
        <div class="col">
         <button type="button" class="btn btn-primary">Action</button> <br/>
@@ -41,7 +46,10 @@ export default {
       msg: '',
       action: {},
       next: '1',
-      prev: '0'
+      prev: '0',
+      state: {},
+      nextstate: {}
+
     }
   },
   methods: {
@@ -65,6 +73,8 @@ export default {
           this.action = res.data.action
           this.next = res.data.next
           this.prev = res.data.prev
+          this.state = res.data.action.state
+          this.nextstate = res.data.action.nextstate
         })
         .catch((error) => {
           // eslint-disable-next-line
