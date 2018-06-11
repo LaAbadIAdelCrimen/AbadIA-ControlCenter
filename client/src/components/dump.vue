@@ -15,20 +15,33 @@ export default {
     }
   },
   methods: {
-    getMessage () {
-      const path = 'http://localhost:5000/ping'
+    getGame () {
+      const path = 'http://localhost:5000/game'
       axios.get(path)
         .then((res) => {
-          this.msg = res.data
+          this.msg = res.data.game.filename
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error)
+        })
+    },
+    getAction (index) {
+      const path = 'http://localhost:5000/action/'+index
+      axios.get(path)
+        .then((res) => {
+          this.action = res.data.action
         })
         .catch((error) => {
           // eslint-disable-next-line
           console.error(error)
         })
     }
+
   },
   created () {
-    this.getMessage()
+    this.getGame()
+    this.getAction('0')
   }
 }
 </script>
