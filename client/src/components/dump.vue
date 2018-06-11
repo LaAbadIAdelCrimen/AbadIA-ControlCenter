@@ -7,12 +7,13 @@
     </div>
     <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-primary">State</button>
-        {{ this.action.action }}
+        <button type="button" class="btn btn-primary">State</button> <br/>
+        {{ this.action.action }} <br/>
       </div>
        <div class="col">
-        <button type="button" class="btn btn-primary">Action</button>
-        {{ this.action.action }}
+        <button type="button" class="btn btn-primary">Action</button> <br/>
+        Action: {{ this.action.action }} <br/>
+        Reward: {{ this.action.reward }} <br/>
       </div>
       <div class="col">
         <button type="button" class="btn btn-primary">Next State</button>
@@ -21,12 +22,10 @@
     </div>
      <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-primary">Prev</button>
-        {{ this.action.action }}
+        <button type="button" class="btn btn-primary"> Prev {{ this.prev }} </button>
       </div>
        <div class="col">
-        <button type="button" class="btn btn-primary">Next</button>
-        {{ this.action.action }}
+        <button type="button" class="btn btn-primary"> Next {{ this.next }} </button>
       </div>
     </div>
   </div>
@@ -39,7 +38,10 @@ export default {
   name: 'Dump',
   data () {
     return {
-      msg: ''
+      msg: '',
+      action: {},
+      next: '1',
+      prev: '0'
     }
   },
   methods: {
@@ -61,6 +63,8 @@ export default {
         .then((res) => {
           this.msg = 'Action ' + index + ' Ready'
           this.action = res.data.action
+          this.next = res.data.next
+          this.prev = res.data.prev
         })
         .catch((error) => {
           // eslint-disable-next-line

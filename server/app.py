@@ -76,7 +76,7 @@ def action(index):
         'status': 'success',
         'game': loadedGame,
         'next': next,
-        'previous': prev,
+        'prev': prev,
         'action': step['action']
 
     })
