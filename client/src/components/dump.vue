@@ -2,11 +2,30 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-primary">{{ this.msg }}</button>
+        {{ this.msg }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-primary">State</button>
+        {{ this.action.action }}
+      </div>
+       <div class="col">
+        <button type="button" class="btn btn-primary">Action</button>
         {{ this.action.action }}
       </div>
       <div class="col">
         <button type="button" class="btn btn-primary">Next State</button>
+        {{ this.action.action }}
+      </div>
+    </div>
+     <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-primary">Prev</button>
+        {{ this.action.action }}
+      </div>
+       <div class="col">
+        <button type="button" class="btn btn-primary">Next</button>
         {{ this.action.action }}
       </div>
     </div>
@@ -40,7 +59,7 @@ export default {
       const path = 'http://localhost:5000/action/' + index
       axios.get(path)
         .then((res) => {
-          this.msg = 'Action Ready'
+          this.msg = 'Action ' + index + ' Ready'
           this.action = res.data.action
         })
         .catch((error) => {
