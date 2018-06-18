@@ -12,10 +12,8 @@
         Pantalla: {{ this.state.numPantalla }}<br/>
         Obsequium: {{ this.state.obsequium }} Bonus: {{ this.state.bonus }}
         Porcentaje: {{ this.state.procentaje }} <br/>
-        {{ this.action.action }} <br/>
-        {{ this.action.action }} <br/>
-        {{ this.action.action }} <br/>
-
+        <div v-html="html">
+        </div>
       </div>
        <div class="col">
         <button type="button" class="btn btn-primary">Action</button> <br/>
@@ -55,9 +53,16 @@ export default {
       prev: '0',
       state: {},
       nextstate: {},
+      html: 'tururu',
     };
   },
   methods: {
+    createRejilla() {
+      let html = '<table>';
+
+      html += '<table>';
+      this.html = html;
+    },
     getGame() {
       const path = 'http://localhost:5000/game';
       axios.get(path)
@@ -83,6 +88,7 @@ export default {
           this.prev = res.data.prev;
           this.state = res.data.action.state;
           this.nextstate = res.data.action.nextstate;
+          this.createRejilla();
         })
         .catch((error) => {
           // eslint-disable-next-line
