@@ -60,9 +60,10 @@ export default {
     createRejilla() {
       let html = '<table>';
       const rej = this.state.rejilla;
+
       html += '<tr><td>*</td>';
       for (let ii = 0; ii <= 23; ii += 1) {
-        html += '<td';
+        html += '<td>';
         html += String(ii);
         html += '</td>';
       }
