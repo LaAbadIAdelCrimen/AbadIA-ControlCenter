@@ -56,6 +56,7 @@ def action(index):
     print("game ({})".format(loadedGame))
     print("actions ({})".format(loadedActions[index]))
     # print("action {}".format(loadedActions[int(index)]))
+
     if int(index) > len(loadedActions) or len(loadedActions) == 0:
         step = {'action': {}}
     else:
@@ -71,6 +72,10 @@ def action(index):
     else:
         prev = str(int(index)-1)
 
+
+    ddreji = []
+
+    step['action']['reji'] = reji
 
     return jsonify({
         'status': 'success',
