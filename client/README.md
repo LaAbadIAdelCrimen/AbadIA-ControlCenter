@@ -1,6 +1,6 @@
-# client
+# abadia
 
-> AbadIA Control Center 
+> abadia control panel 
 
 ## Build Setup
 
