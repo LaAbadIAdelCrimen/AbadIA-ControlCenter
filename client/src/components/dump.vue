@@ -74,7 +74,9 @@ export default {
         html += String(y);
         html += '</b></td>';
         row.forEach((col) => {
-          html += '<td style="width=10px; height=10px;">';
+          html += '<td width=10px; height=10px; bgcolor=rgb(0,220,255); ';
+          // html += String(220); // (255 - (col[2] * 10)));
+          // html += ',255);>';
           if (col[0] >= 0) {
             html += String(col[0]);
           }
