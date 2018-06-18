@@ -58,24 +58,26 @@ export default {
   },
   methods: {
     createRejilla() {
-      let html = '<table>';
+      let html = '<table style="font-family:Courier; font-size:10px;" >';
       const rej = this.state.rejilla;
 
       html += '<tr><td>*</td>';
       for (let ii = 0; ii <= 23; ii += 1) {
-        html += '<td>';
+        html += '<td><b>';
         html += String(ii);
-        html += '</td>';
+        html += '</b></td>';
       }
       html += '</tr>';
 
       rej.forEach((row, y) => {
-        html += '<tr><td>';
+        html += '<tr><td><b>';
         html += String(y);
-        html += '</td>';
+        html += '</b></td>';
         row.forEach((col) => {
-          html += '<td>';
-          html += String(col[0]);
+          html += '<td style="width=10px; height=10px;">';
+          if (col[0] >= 0) {
+            html += String(col[0]);
+          }
           html += '</td>';
         });
         html += '<tr>';
