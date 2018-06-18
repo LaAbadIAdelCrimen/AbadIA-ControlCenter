@@ -73,9 +73,29 @@ def action(index):
         prev = str(int(index)-1)
 
 
-    ddreji = []
+    reji = []
 
-    step['action']['reji'] = reji
+    floorLevel = step['action']['state']['Personajes'][0]['altura']
+
+    rejilla = step['action']['state']['Rejilla']
+
+    for y in range(0,24):
+        row = []
+        for x in range(0, 24):
+            alt = rejilla[x][y] % 16 - floorLevel
+            per = -1
+            for per in step['action']['state']['Personajes']:
+                who = -1
+                tmpX = per['posX'] & 0xf0 - 4
+                tmpY = per['posY'] & 0xf0 - 4
+                if (tmpX == x and tmpY == y):
+                    who = per['id']
+                ori = 0
+                vals = [who, ori, alt]
+            row.append(vals)
+        reji.append(row)
+
+    step['action']['state']['rejilla'] = reji
 
     return jsonify({
         'status': 'success',
