@@ -59,7 +59,26 @@ export default {
   methods: {
     createRejilla() {
       let html = '<table>';
+      const rej = this.state.rejilla;
+      html += '<tr><td>*</td>';
+      for (let ii = 0; ii <= 23; ii += 1) {
+        html += '<td';
+        html += String(ii);
+        html += '</td>';
+      }
+      html += '</tr>';
 
+      rej.forEach((row, y) => {
+        html += '<tr><td>';
+        html += String(y);
+        html += '</td>';
+        row.forEach((col) => {
+          html += '<td>';
+          html += String(col[0]);
+          html += '</td>';
+        });
+        html += '<tr>';
+      });
       html += '<table>';
       this.html = html;
     },
