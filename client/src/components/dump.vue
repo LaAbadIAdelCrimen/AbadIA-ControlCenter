@@ -24,7 +24,10 @@
       </div>
       <div class="col">
         <button type="button" class="btn btn-primary">Next State</button>
-        {{ this.action.action }}
+        <br/>
+        <div v-html="html">
+        </div>
+
       </div>
     </div>
      <div class="row">
@@ -56,13 +59,14 @@ export default {
       state: {},
       nextstate: {},
       html: 'tururu',
+      htmlnext: 'tururu',
       pers: 'cargando personajes',
     };
   },
   methods: {
-    createRejilla() {
+    createRejilla(donde, rej) {
       let html = '<table style="font-family:Courier; font-size:9px; border: 1px solid white;" >';
-      const rej = this.state.rejilla;
+      // const rej = this.state.rejilla;
 
       html += '<tr><td>*</td>';
       for (let ii = 0; ii <= 23; ii += 1) {
@@ -101,8 +105,15 @@ export default {
         });
         html += '<tr>';
       });
+
       html += '<table>';
-      this.html = html;
+      if (donde === 'html') {
+        this.html = html;
+      }
+
+      if (donde === 'htmlnext') {
+        this.htmlnext = html;
+      }
     },
     getPersonajes() {
       let pers = '';
@@ -149,7 +160,7 @@ export default {
           this.prev = res.data.prev;
           this.state = res.data.action.state;
           this.nextstate = res.data.action.nextstate;
-          this.createRejilla();
+          this.createRejilla('html', this.state.rejilla);
           this.getPersonajes();
         })
         .catch((error) => {
