@@ -86,9 +86,10 @@ def action(index):
             per = -1
             for per in step['action']['state']['Personajes']:
                 who = -1
-                tmpX = per['posX'] & 0xf0 + 4
-                tmpY = per['posY'] & 0xf0 + 4
+                tmpX = per['posX'] % 16 + 4
+                tmpY = per['posY'] % 16 + 4
                 if (tmpX == x and tmpY == y):
+                    print ("personaje {} en {},{}".format(per['id'], tmpX, tmpY))
                     who = per['id']
                 ori = 0
                 vals = [who, ori, alt]

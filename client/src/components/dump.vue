@@ -94,15 +94,19 @@ export default {
       let pers = '';
       const personajes = this.state.Personajes;
       personajes.forEach((per) => {
-        pers += '<p><b>';
+        pers += '<b>';
         pers += String(per.nombre);
         pers += '</b> ';
         pers += String(per.posX);
         pers += ',';
         pers += String(per.posY);
         pers += ' ';
+        pers += String((per.posX % 16) + 4);
+        pers += ',';
+        pers += String((per.posY % 16) + 4);
+        pers += ' ';
         pers += String(per.orientacion);
-        pers += '</p>';
+        pers += '<br/>';
       });
       this.pers = pers;
     },
