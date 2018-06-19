@@ -25,6 +25,12 @@
       <div class="col">
         <button type="button" class="btn btn-primary">Next State</button>
         <br/>
+        Día: {{ this.nextstate.dia }} Hora: {{ this.nextstate.momentoDia }}
+        Pantalla: {{ this.nextstate.numPantalla }}<br/>
+        Obsequium: {{ this.nextstate.obsequium }} Bonus: {{ this.nextstate.bonus }}
+        Porcentaje: {{ this.nextstate.procentaje }} <br/>
+        <div v-html="persnext">
+        </div>
         <div v-html="htmlnext">
         </div>
 
@@ -61,6 +67,7 @@ export default {
       html: 'tururu',
       htmlnext: 'tururu',
       pers: 'cargando personajes',
+      persnext: 'cargando personajes',
     };
   },
   methods: {
@@ -115,9 +122,8 @@ export default {
         this.htmlnext = html;
       }
     },
-    getPersonajes() {
+    getPersonajes(donde, personajes) {
       let pers = '';
-      const personajes = this.state.Personajes;
       personajes.forEach((per) => {
         pers += '<b>';
         pers += String(per.nombre);
@@ -133,7 +139,12 @@ export default {
         pers += String(per.orientacion);
         pers += '<br/>';
       });
-      this.pers = pers;
+      if (donde === 'pers') {
+        this.pers = pers;
+      }
+      if (donde === 'persnext') {
+        this.pers = pers;
+      }
     },
     getGame() {
       const path = 'http://localhost:5000/game';
@@ -162,7 +173,8 @@ export default {
           this.nextstate = res.data.action.nextstate;
           this.createRejilla('html', this.state.rejilla);
           this.createRejilla('htmlnext', this.nextstate.rejilla);
-          this.getPersonajes();
+          this.getPersonajes('pers', this.state.Personajes);
+          this.getPersonajes('persnext', this.nextstate.Personajes);
         })
         .catch((error) => {
           // eslint-disable-next-line
