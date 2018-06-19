@@ -21,6 +21,36 @@ CORS(app)
 loadedGame    = {}
 loadedActions = {}
 
+
+def createRejilla(step):
+    reji = []
+    floorLevel = step['Personajes'][0]['altura']
+    rejilla = step['Rejilla']
+
+    for y in range(0, 24):
+        row = []
+        for x in range(0, 24):
+            alt = rejilla[y][x] % 16 - floorLevel
+            zone = int(rejilla[y][x] / 16)
+
+            who = -1
+            ori = -1
+            if zone > 0:
+                who = -1 + (-zone)
+            for per in step['Personajes']:
+                tmpX = per['posX'] % 16 + 4
+                tmpY = per['posY'] % 16 + 3
+                if (tmpX == x and tmpY == y):
+                    print("personaje {} en {},{}".format(per['id'], tmpX, tmpY))
+                    who = per['id']
+                    ori = per['orientacion']
+            vals = [who, ori, alt]
+            row.append(vals)
+        reji.append(row)
+
+    step['rejilla'] = reji
+
+
 # sanity check route
 @app.route('/ping', methods=['GET'])
 def ping_pong():
@@ -72,35 +102,8 @@ def action(index):
     else:
         prev = str(int(index)-1)
 
-
-    reji = []
-
-    floorLevel = step['action']['state']['Personajes'][0]['altura']
-
-    rejilla = step['action']['state']['Rejilla']
-
-    for y in range(0,24):
-        row = []
-        for x in range(0, 24):
-            alt = rejilla[y][x] % 16 - floorLevel
-            zone = int(rejilla[y][x] / 16)
-
-            who = -1
-            ori = -1
-            if zone > 0:
-                who = -1 + (-zone)
-            for per in step['action']['state']['Personajes']:
-                tmpX = per['posX'] % 16 + 4
-                tmpY = per['posY'] % 16 + 3
-                if (tmpX == x and tmpY == y):
-                    print ("personaje {} en {},{}".format(per['id'], tmpX, tmpY))
-                    who = per['id']
-                    ori = per['orientacion']
-            vals = [who, ori, alt]
-            row.append(vals)
-        reji.append(row)
-
-    step['action']['state']['rejilla'] = reji
+    createRejilla(step['action']['state'])
+    createRejilla(step['action']['nextstate'])
 
     return jsonify({
         'status': 'success',

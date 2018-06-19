@@ -25,7 +25,7 @@
       <div class="col">
         <button type="button" class="btn btn-primary">Next State</button>
         <br/>
-        <div v-html="html">
+        <div v-html="htmlnext">
         </div>
 
       </div>
@@ -161,6 +161,7 @@ export default {
           this.state = res.data.action.state;
           this.nextstate = res.data.action.nextstate;
           this.createRejilla('html', this.state.rejilla);
+          this.createRejilla('htmlnext', this.nextstate.rejilla);
           this.getPersonajes();
         })
         .catch((error) => {
