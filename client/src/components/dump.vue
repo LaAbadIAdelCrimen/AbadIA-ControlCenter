@@ -143,7 +143,7 @@ export default {
         this.pers = pers;
       }
       if (donde === 'persnext') {
-        this.pers = pers;
+        this.persnext = pers;
       }
     },
     getGame() {
