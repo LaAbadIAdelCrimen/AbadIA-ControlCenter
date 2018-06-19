@@ -95,7 +95,7 @@ export default {
             }
           }
           if (col[0] < -1) {
-            html += String(col[0] + 3);
+            html += String((col[0] * -1) - 2);
           }
           html += '</td>';
         });

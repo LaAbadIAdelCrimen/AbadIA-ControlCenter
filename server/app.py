@@ -86,6 +86,7 @@ def action(index):
             zone = int(rejilla[y][x] / 16)
 
             who = -1
+            ori = -1
             if zone > 0:
                 who = -1 + (-zone)
             for per in step['action']['state']['Personajes']:
@@ -94,7 +95,7 @@ def action(index):
                 if (tmpX == x and tmpY == y):
                     print ("personaje {} en {},{}".format(per['id'], tmpX, tmpY))
                     who = per['id']
-                ori = 0
+                    ori = per['orientacion']
             vals = [who, ori, alt]
             row.append(vals)
         reji.append(row)
