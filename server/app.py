@@ -83,16 +83,19 @@ def action(index):
         row = []
         for x in range(0, 24):
             alt = rejilla[y][x] % 16 - floorLevel
-            per = -1
+            zone = int(rejilla[y][x] / 16)
+
+            who = -1
+            if zone > 0:
+                who = -2 + (-zone)
             for per in step['action']['state']['Personajes']:
-                who = -1
                 tmpX = per['posX'] % 16 + 4
                 tmpY = per['posY'] % 16 + 4
                 if (tmpX == x and tmpY == y):
                     print ("personaje {} en {},{}".format(per['id'], tmpX, tmpY))
                     who = per['id']
                 ori = 0
-                vals = [who, ori, alt]
+            vals = [who, ori, alt]
             row.append(vals)
         reji.append(row)
 
