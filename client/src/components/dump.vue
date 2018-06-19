@@ -64,7 +64,7 @@ export default {
       html += '<tr><td>*</td>';
       for (let ii = 0; ii <= 23; ii += 1) {
         html += '<td><b>';
-        html += String(ii);
+        html += String(ii % 10);
         html += '</b></td>';
       }
       html += '</tr>';
