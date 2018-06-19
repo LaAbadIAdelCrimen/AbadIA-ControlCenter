@@ -12,6 +12,8 @@
         Pantalla: {{ this.state.numPantalla }}<br/>
         Obsequium: {{ this.state.obsequium }} Bonus: {{ this.state.bonus }}
         Porcentaje: {{ this.state.procentaje }} <br/>
+        <div v-html="pers">
+        </div>
         <div v-html="html">
         </div>
       </div>
@@ -54,6 +56,7 @@ export default {
       state: {},
       nextstate: {},
       html: 'tururu',
+      pers: 'cargando personajes',
     };
   },
   methods: {
@@ -87,6 +90,22 @@ export default {
       html += '<table>';
       this.html = html;
     },
+    getPersonajes() {
+      let pers = '';
+      const personajes = this.state.Personajes;
+      personajes.forEach((per) => {
+        pers += '<p><b>';
+        pers += String(per.nombre);
+        pers += '</b> ';
+        pers += String(per.posX);
+        pers += ',';
+        pers += String(per.posY);
+        pers += ' ';
+        pers += String(per.orientacion);
+        pers += '</p>';
+      });
+      this.pers = pers;
+    },
     getGame() {
       const path = 'http://localhost:5000/game';
       axios.get(path)
@@ -113,6 +132,7 @@ export default {
           this.state = res.data.action.state;
           this.nextstate = res.data.action.nextstate;
           this.createRejilla();
+          this.getPersonajes();
         })
         .catch((error) => {
           // eslint-disable-next-line
