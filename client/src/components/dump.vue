@@ -81,7 +81,21 @@ export default {
           html += String(255 - (col[2] * 10));
           html += ',255);">';
           if (col[0] >= 0) {
-            html += String(col[0]);
+            if (col[1] === 0) {
+              html += '>';
+            }
+            if (col[1] === 3) {
+              html += 'v';
+            }
+            if (col[1] === 1) {
+              html += '^';
+            }
+            if (col[1] === 2) {
+              html += '>';
+            }
+          }
+          if (col[0] < -1) {
+            html += String(col[0] + 3);
           }
           html += '</td>';
         });

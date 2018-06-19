@@ -87,10 +87,10 @@ def action(index):
 
             who = -1
             if zone > 0:
-                who = -2 + (-zone)
+                who = -1 + (-zone)
             for per in step['action']['state']['Personajes']:
                 tmpX = per['posX'] % 16 + 4
-                tmpY = per['posY'] % 16 + 4
+                tmpY = per['posY'] % 16 + 3
                 if (tmpX == x and tmpY == y):
                     print ("personaje {} en {},{}".format(per['id'], tmpX, tmpY))
                     who = per['id']
