@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     createRejilla() {
-      let html = '<table style="font-family:Courier; font-size:10px;" >';
+      let html = '<table style="font-family:Courier; font-size:9px;" >';
       const rej = this.state.rejilla;
 
       html += '<tr><td>*</td>';
@@ -74,9 +74,9 @@ export default {
         html += String(y);
         html += '</b></td>';
         row.forEach((col) => {
-          html += '<td width=10px; height=10px; bgcolor=rgb(0,220,255); ';
-          // html += String(220); // (255 - (col[2] * 10)));
-          // html += ',255);>';
+          html += '<td style="width:7px; height:7px; background-color:rgb(0,';
+          html += String(255 - (col[2] * 10));
+          html += ',255);">';
           if (col[0] >= 0) {
             html += String(col[0]);
           }
